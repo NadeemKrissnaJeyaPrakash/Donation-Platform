@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register - CodeLock Charity</title>
+    <style>
+        /* Centers everything on the screen and adds a soft background color */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Creates the clean white card look for the form */
+        .register-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Styles the text boxes */
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .policy-text {
+            color: #6c757d;
+            font-size: 12px;
+            display: block;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        /* Styles the submit button */
+        .btn-submit {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        /* Makes the security alerts pop */
+        .error-msg {
+            color: #dc3545;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Create a Donor Account</h2>
+
+        <form th:action="@{/register}" method="post">
+
+			<label>Username:</label>
+			<input type="text" name="username" th:value="${username}" required />
+
+            <label>Email:</label>
+            <input type="email" name="email" th:value="${email}" required />
+
+            <label>Password:</label>
+            <input type="password" name="password" required />
+            <span class="policy-text">Must contain at least 8 characters, 1 uppercase, 1 number, and 1 symbol.</span>
+
+            <label>Confirm Password:</label>
+            <input type="password" name="confirmPassword" required />
+
+            <p th:if="${error}" th:text="${error}" class="error-msg"></p>
+
+            <button type="submit" class="btn-submit">Secure Registration</button>
+        </form>
+        
+        <a th:href="@{/login}" class="login-link">Already have an account? Login here</a>
+    </div>
+
+</body>
+</html>
