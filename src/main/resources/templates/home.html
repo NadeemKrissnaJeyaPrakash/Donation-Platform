@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CodeLock - Online Donation</title>
+</head>
+<body style="font-family: Arial; margin: 40px;">
+
+    <h1>Welcome to CodeLock Charity Platform!</h1>
+    
+    <div style="border: 2px solid #ccc; padding: 20px; max-width: 400px;">
+        <h3>Attach a Message to Your Donation</h3>
+        
+        <form th:action="@{/submitDonation}" th:object="${donation}" method="post">
+            <label>Donor Message (Max 20 chars):</label><br>
+            <input type="text" th:field="*{donorMessage}" style="width: 100%; margin-top: 5px;"/>
+            
+            <p th:if="${#fields.hasErrors('donorMessage')}" th:errors="*{donorMessage}" style="color: red; font-weight: bold;"></p>
+            
+            <br>
+            <button type="submit" style="margin-top: 10px; padding: 5px 15px;">Submit Securely</button>
+        </form>
+
+        <p th:if="${successMessage}" th:text="${successMessage}" style="color: green; font-weight: bold;"></p>
+    </div>
+
+</body>
+</html>
